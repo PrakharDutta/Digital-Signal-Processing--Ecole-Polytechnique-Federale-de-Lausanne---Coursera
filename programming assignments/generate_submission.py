@@ -61,15 +61,15 @@ def output(partIdx):
       outputString += '%d ' % (val)
 
   else:
-    print "Unknown assigment part number"
+    print("Unknown assignment part number")
 
   if len(outputString) > 0:
     fileName = "res%s.txt" % partIdx;
     with open(fileName, "w") as f:
       f.write(outputString.strip())
-      print "You can now submit the file " + fileName
+      print("You can now submit the file " + fileName)
   else:
-    print "there was an error with the computation. Please check your code"
+    print("there was an error with the computation. Please check your code")
 
 
 if __name__ == "__main__":
