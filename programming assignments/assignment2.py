@@ -11,7 +11,14 @@ def prototype_filter():
         You should use the remez routine (signal.remez()). See
         http://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.remez.html
     """
+    import numpy as np
 
-    # Your code goes here
+    M = 512     # number of taps
+    Fs = np.pi  # sampling rate
+    FPass = np.pi/128    # passband edge
+    Fstop = np.pi/32     # stopband edge
+
+    h = signal.remez(M, [0, FPass/2, Fstop/2, Fs/2], [2, 0], fs=Fs)
+    return h
 
 
