@@ -85,14 +85,14 @@ def check_assignment2(plot=False):
     h = prototype_filter()
 
     # Create the cosine filter bank
-    cosine_bank = np.cos(np.pi/64. * (2*np.arange(32)[:,np.newaxis]+1)*(np.arange(h.shape[0])-16))
+    cosine_bank = np.cos(np.pi/64. * (2*np.arange(32)[:, np.newaxis]+1)*(np.arange(h.shape[0])-16))
     fb = cosine_bank*h
 
     # Frequency response
     from numpy import fft
     f = np.arange(257)/256./2.
     H = fft.fft(h)[:257]
-    FB = fft.fft(fb, axis=1)[:,:257].T
+    FB = fft.fft(fb, axis=1)[:, :257].T
 
     # ideal filter template
     ideal = np.zeros(257)
@@ -100,7 +100,7 @@ def check_assignment2(plot=False):
     f_stop = 1./64.  # stop band
     Ilo = f <= f_pass
     Ihi = f >= f_stop
-    I_both = np.logical_or(Ilo,Ihi)
+    I_both = np.logical_or(Ilo, Ihi)
     ideal[f < f_stop] = 0.5
     ideal[f <= f_pass] = 2.
 
@@ -145,7 +145,7 @@ def check_assignment3():
     h = prototype_filter()
 
     # Create the cosine filter bank
-    cosine_bank = np.cos(np.pi/64. * (2*np.arange(32)[:np.newaxis]+1)*(np.arange(h.shape[0])-16))
+    cosine_bank = np.cos(np.pi/64. * (2*np.arange(32)[:, np.newaxis]+1)*(np.arange(h.shape[0])-16))
     fb = cosine_bank*h
 
     pass_test = True
@@ -155,7 +155,7 @@ def check_assignment3():
         fin = 'data/testInput' + str(i) + '.wav'
         fout = 'data/a3_testOutput' + str(i) + '.txt'
 
-        r,x_in = wavfile.read(fin)
+        r, x_in = wavfile.read(fin)
 
         h = np.hanning(512)
         X = subband_filtering(x_in, h)

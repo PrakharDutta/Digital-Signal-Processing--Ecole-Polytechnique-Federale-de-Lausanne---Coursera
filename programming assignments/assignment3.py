@@ -14,4 +14,9 @@ def subband_filtering(x, h):
         s: 32 new output samples
     """
 
-    # Your code goes here
+    r = h * x
+    q = np.arange(64)    # range from 0 to 63
+    c = np.sum((-1)**np.arange(8)[:, np.newaxis] * r[q + 64*np.arange(8)[:, np.newaxis]], axis=0)
+    # Compute subband outputs
+    s = np.sum(np.cos(np.pi / 64. * (2 * np.arange(32)[:, np.newaxis] + 1) * (np.arange(q.shape[0]) - 16))*c, axis=1)
+    return s
