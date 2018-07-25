@@ -60,11 +60,14 @@ class Tables:
     if bitrate >= 96:
       self.hear -= 12
 
-    self.map = np.zeros(FFT_SIZE / 2 + 1, dtype='uint16')
+    half_fft_size = np.uint16(FFT_SIZE / 2 + 1)    # Created by me
+    # self.map = np.zeros(half_fft_size, dtype='uint16')    # doesn't work for some reason
+    self.map = np.zeros(257, dtype='uint16')
     for i in range(self.subsize - 1):
-      for j in range(self.line[i],self.line[i+1]):
+      for j in range(self.line[i], self.line[i+1]):
         self.map[j] = i
-    for j in range(self.line[self.subsize - 1], FFT_SIZE / 2 + 1):
+    # for j in range(self.line[self.subsize - 1], half_fft_size):  # doesn't work for some reason
+    for j in range(self.line[self.subsize - 1], 257):
       self.map[j] = self.subsize - 1
 
 
@@ -141,7 +144,7 @@ class EncoderParameters:
                    self.modext<<4    | self.copyright<<3    | 
                    self.original<<2  | self.emphasis         )
                    
-    self.table = Tables(self.fs,bitrate)
+    self.table = Tables(self.fs, bitrate)
                      
   
 
