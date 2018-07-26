@@ -19,11 +19,9 @@ def lag_interp(s, k, N, t):
     return res
 
 if __name__ == "__main__":
-    #s = np.array([4, -2, -3])
-    #k = np.array([-1, 0, 1])
-    s = np.array([-2, -3])
-    k = np.array([0, 1])
-    res = lag_interp(s, k, 1, 1/4)
+    s = np.array([4, -2, -3])
+    k = np.array([-1, 0, 1])
+    res = lag_interp(s, k, 1, 1/2)
     print(res)
 
     x = np.linspace(-1, 1, 50)
